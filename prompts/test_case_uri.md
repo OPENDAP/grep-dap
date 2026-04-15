@@ -31,3 +31,7 @@ If you will execute a series of Python commands, save them in a file named <scri
 3. Thanks.  Can you configure the COARDS per-variable attributes in Section 6.3.3 of uri_test_case.tex to follow what was done for the coordinates?  Also, Table 6 has overlapping text between columns.  Please fix that too.
 
 4. Given the semantic metatadat that you have generated for the gradients_by_period dataset, can you provide a description of the data and how it was generated?  Add to the uri_test_case.tex file accordingly.  If you need to do any additional analysis, please do so and add to the log file and the uri_test_case.tex file accordingly.
+
+5. Please estimate the spatial range over which the gradients were calculated.  Add your estimate and reasoning to the document.
+
+6. NASA's primary search engine for datasets is EarthData Search.  Please generate an entry for EarthData Search that describes the gradients_by_period dataset.  Generate a new file for this that conforms to the EarthData Search format.
