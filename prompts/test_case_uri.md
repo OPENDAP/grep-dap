@@ -29,3 +29,5 @@ If you will execute a series of Python commands, save them in a file named <scri
 2. This is an excellent start.  Reread this document. Explore further the gradients_by_period dataset.   See if you can better infer the semantic metadata for this dataset, both global and for each variable.  Generate guesses that are COARDS compliant and provide your explanations for each.  Update the log file and the uri_test_case.tex file accordingly.  
 
 3. Thanks.  Can you configure the COARDS per-variable attributes in Section 6.3.3 of uri_test_case.tex to follow what was done for the coordinates?  Also, Table 6 has overlapping text between columns.  Please fix that too.
+
+4. Given the semantic metatadat that you have generated for the gradients_by_period dataset, can you provide a description of the data and how it was generated?  Add to the uri_test_case.tex file accordingly.  If you need to do any additional analysis, please do so and add to the log file and the uri_test_case.tex file accordingly.
