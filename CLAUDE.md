@@ -43,7 +43,7 @@ Adhere to following:
 
 If you run Python code, use the "ocean14" conda environment.
 
-To interact with an OPeNDAP server, you may wish to use the pydap package.  Its documentation is located here pydap.github.io/pydap/
+To interact with an OPeNDAP server, you may wish to use the pydap package.  Its documentation is located here https://pydap.github.io/pydap/en/intro.html
 
 # Overleaf
 
