@@ -1,0 +1,259 @@
+{
+  "MetadataSpecification": {
+    "URL": "https://cdn.earthdata.nasa.gov/umm/collection/v1.18.0",
+    "Name": "UMM-C",
+    "Version": "1.18.0"
+  },
+  "DataLanguage": "eng",
+  "ShortName": "URI-GSO-SST-GRADIENT-MONTHLY-1DEG",
+  "Version": "1.0",
+  "EntryTitle": "Augmented Monthly SST and SST Gradient Statistics on a 1-Degree Global Grid from AQUA MODIS (URI-GSO)",
+  "Abstract": "Monthly statistics of sea surface temperature (SST) and SST spatial gradients derived from NASA AQUA MODIS Level-2 satellite retrievals, binned onto a 1-degree global grid. Each file contains sufficient statistics (pixel counts, sums, and sums of squares) to compute the mean, variance, and standard deviation of SST and several gradient quantities within each grid cell for a given calendar month. Gradients are provided in two coordinate frames: geographic (eastward, northward) and satellite (along-swath, across-track), plus gradient magnitudes. Daytime and nighttime satellite passes are tracked independently. The gradient computation uses a spatial kernel of approximately 4-6 km, appropriate for resolving mesoscale oceanographic fronts. The dataset spans July 2002 through December 2024, covering 23 years of the AQUA mission. Data are stored as NetCDF files with 34 variables on a 360 x 180 (longitude x latitude) grid with cell centers from -179.5 to 179.5 degrees East and -89.5 to 89.5 degrees North. The 'augmented' designation indicates enrichment with satellite-frame gradient statistics beyond the original geographic-frame statistics. These data support research on the spatial and temporal variability of ocean thermal fronts.",
+  "Purpose": "To provide a global climatology of SST gradient statistics for studying the distribution, intensity, and temporal variability of ocean thermal fronts derived from satellite SST observations.",
+  "DOI": {
+    "MissingReason": "Not Applicable",
+    "Explanation": "This dataset has not been assigned a DOI."
+  },
+  "CollectionProgress": "ACTIVE",
+  "ScienceKeywords": [
+    {
+      "Category": "EARTH SCIENCE",
+      "Topic": "OCEANS",
+      "Term": "OCEAN TEMPERATURE",
+      "VariableLevel1": "SEA SURFACE TEMPERATURE"
+    },
+    {
+      "Category": "EARTH SCIENCE",
+      "Topic": "OCEANS",
+      "Term": "OCEAN TEMPERATURE",
+      "VariableLevel1": "SEA SURFACE TEMPERATURE",
+      "DetailedVariable": "SST SPATIAL GRADIENT"
+    },
+    {
+      "Category": "EARTH SCIENCE",
+      "Topic": "OCEANS",
+      "Term": "OCEAN TEMPERATURE",
+      "VariableLevel1": "SEA SURFACE TEMPERATURE",
+      "DetailedVariable": "SST FRONTS"
+    }
+  ],
+  "AncillaryKeywords": [
+    "SST",
+    "SEA SURFACE TEMPERATURE",
+    "SST GRADIENT",
+    "SST FRONTS",
+    "OCEAN FRONTS",
+    "MODIS",
+    "AQUA",
+    "MONTHLY STATISTICS",
+    "GLOBAL",
+    "URI-GSO"
+  ],
+  "TemporalExtents": [
+    {
+      "RangeDateTimes": [
+        {
+          "BeginningDateTime": "2002-07-01T00:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "TemporalKeywords": [
+    "Monthly - < Annual"
+  ],
+  "SpatialExtent": {
+    "SpatialCoverageType": "HORIZONTAL",
+    "HorizontalSpatialDomain": {
+      "Geometry": {
+        "CoordinateSystem": "CARTESIAN",
+        "BoundingRectangles": [
+          {
+            "NorthBoundingCoordinate": 90,
+            "WestBoundingCoordinate": -180,
+            "EastBoundingCoordinate": 180,
+            "SouthBoundingCoordinate": -90
+          }
+        ]
+      },
+      "ResolutionAndCoordinateSystem": {
+        "Description": "1-degree global rectilinear grid",
+        "HorizontalDataResolution": {
+          "GriddedResolutions": [
+            {
+              "XDimension": 1.0,
+              "YDimension": 1.0,
+              "Unit": "Degree"
+            }
+          ]
+        }
+      }
+    },
+    "GranuleSpatialRepresentation": "CARTESIAN"
+  },
+  "Platforms": [
+    {
+      "Type": "Earth Observation Satellites",
+      "ShortName": "Aqua",
+      "LongName": "Earth Observing System, Aqua",
+      "Instruments": [
+        {
+          "ShortName": "MODIS",
+          "LongName": "Moderate-Resolution Imaging Spectroradiometer"
+        }
+      ]
+    }
+  ],
+  "ProcessingLevel": {
+    "Id": "3",
+    "ProcessingLevelDescription": "Gridded monthly statistics derived from Level-2 MODIS AQUA SST orbit data. Processing includes quality masking (Fix_MODIS_Mask), gradient computation over approximately 4-6 km spatial scale in geographic and satellite reference frames, binning to a 1-degree global grid, and monthly accumulation of sums, sums of squares, and pixel counts."
+  },
+  "Projects": [
+    {
+      "ShortName": "SST_Fronts",
+      "LongName": "Sea Surface Temperature Fronts"
+    }
+  ],
+  "DataCenters": [
+    {
+      "Roles": [
+        "ARCHIVER",
+        "DISTRIBUTOR",
+        "PROCESSOR"
+      ],
+      "ShortName": "URI-GSO",
+      "LongName": "Graduate School of Oceanography, University of Rhode Island",
+      "ContactInformation": {
+        "ContactMechanisms": [
+          {
+            "Type": "Email",
+            "Value": "pcornillon@gso.uri.edu"
+          }
+        ],
+        "RelatedUrls": [
+          {
+            "URLContentType": "DataCenterURL",
+            "Type": "HOME PAGE",
+            "URL": "http://www.sstfronts.org"
+          }
+        ]
+      }
+    }
+  ],
+  "ContactPersons": [
+    {
+      "Roles": [
+        "Science Contact",
+        "Technical Contact"
+      ],
+      "FirstName": "Peter",
+      "LastName": "Cornillon",
+      "NonDataCenterAffiliation": "University of Rhode Island, Graduate School of Oceanography",
+      "ContactInformation": {
+        "ContactMechanisms": [
+          {
+            "Type": "Email",
+            "Value": "pcornillon@gso.uri.edu"
+          }
+        ]
+      }
+    }
+  ],
+  "CollectionCitations": [
+    {
+      "Creator": "Peter Cornillon",
+      "Title": "Augmented Monthly SST and SST Gradient Statistics on a 1-Degree Global Grid from AQUA MODIS",
+      "Publisher": "University of Rhode Island, Graduate School of Oceanography",
+      "ReleasePlace": "Narragansett, Rhode Island, USA",
+      "Version": "1.0"
+    }
+  ],
+  "RelatedUrls": [
+    {
+      "URLContentType": "DistributionURL",
+      "Type": "GET DATA",
+      "Subtype": "OPENDAP DATA",
+      "URL": "https://sst-aqua.gso.uri.edu/opendap/gradients_by_period/",
+      "Description": "OPeNDAP access to the gradients_by_period dataset on the URI-GSO Hyrax server."
+    },
+    {
+      "URLContentType": "PublicationURL",
+      "Type": "VIEW RELATED INFORMATION",
+      "Subtype": "GENERAL DOCUMENTATION",
+      "URL": "http://www.sstfronts.org",
+      "Description": "SST Fronts project home page at URI-GSO."
+    },
+    {
+      "URLContentType": "DistributionURL",
+      "Type": "GET DATA",
+      "Subtype": "OPENDAP DATA",
+      "URL": "https://sst-aqua.gso.uri.edu/opendap/SST_Orbits/",
+      "Description": "OPeNDAP access to the source Level-2 SST orbit data used to generate this dataset."
+    }
+  ],
+  "LocationKeywords": [
+    {
+      "Category": "GEOGRAPHIC REGION",
+      "Type": "GLOBAL"
+    },
+    {
+      "Category": "VERTICAL LOCATION",
+      "Type": "SEA SURFACE"
+    }
+  ],
+  "DataDates": [
+    {
+      "Type": "CREATE",
+      "Date": "2025-06-26T00:00:00.000Z"
+    },
+    {
+      "Type": "UPDATE",
+      "Date": "2025-07-02T00:00:00.000Z"
+    }
+  ],
+  "ArchiveAndDistributionInformation": {
+    "FileDistributionInformation": [
+      {
+        "FormatType": "Native",
+        "Media": ["HTTPS", "OPeNDAP"],
+        "Format": "netCDF",
+        "AverageFileSize": 8.5,
+        "AverageFileSizeUnit": "MB",
+        "TotalCollectionFileSize": 2346,
+        "TotalCollectionFileSizeUnit": "MB",
+        "Description": "276 monthly NetCDF files (12 months x 23 years), each approximately 8.5 MB. File naming convention: augmented_monthly_stats_MM_YYYY.nc"
+      }
+    ]
+  },
+  "AdditionalAttributes": [
+    {
+      "Name": "GradientSpatialScale",
+      "Description": "Approximate spatial scale over which SST gradients are computed",
+      "DataType": "STRING",
+      "Value": "4-6 km"
+    },
+    {
+      "Name": "GridDimensions",
+      "Description": "Array dimensions of each variable (longitude x latitude)",
+      "DataType": "STRING",
+      "Value": "360 x 180"
+    },
+    {
+      "Name": "SourceDataset",
+      "Description": "Source Level-2 dataset from which this product is derived",
+      "DataType": "STRING",
+      "Value": "URI-GSO Conditioned 1km (L2) MODIS AQUA SST (SST_Orbits)"
+    },
+    {
+      "Name": "NumberOfVariables",
+      "Description": "Total number of data variables per file (17 daytime + 17 nighttime)",
+      "DataType": "INT",
+      "Value": "34"
+    },
+    {
+      "Name": "DayNightFlag",
+      "Description": "Daytime and nighttime statistics are stored separately",
+      "DataType": "STRING",
+      "Value": "DAY_AND_NIGHT"
+    }
+  ]
+}

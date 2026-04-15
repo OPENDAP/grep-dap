@@ -23,6 +23,66 @@ The result is that there are many OPeNDAP servers but, not surprisingly, the met
 
 I have been involved in work in which we have used contrastive learning to characterize SST fields. Given another archive of 2d fields, I could apply the model we developed to the new data to see what the probability is that it is SST data. You get the idea.  One of the beauties of OPeNDAP is that I can easily sample data from archives if I know the server address. Given that some archives are very well defined I can compare, in a statistical sense, samples from these with samples from the new archive…
 
+# Potential solution
+
+The following describes a potential solution to the problem.  We will refine the approach as we develop.
+
+## Background
+
+OPeNDAP (DAP) is a client-server protocol for remote access to scientific datasets. It has:
+
+A well-defined syntactic metadata structure, which describes how the data are organized (variables, dimensions, arrays, etc.). This is sufficient for accessing and plotting the data.
+
+A loosely constrained semantic metadata structure, which describes meaning, provenance, and context. This varies widely across datasets—from very complete to nearly nonexistent.
+
+This design reflects a tradeoff: lower barriers to serving data, but weaker guarantees about semantic clarity.
+
+A key feature of OPeNDAP is that a client can request small subsets of both data and metadata from remote archives.
+
+
+## Problem Context
+
+Suppose I encounter a new OPeNDAP-accessible dataset with little or unreliable semantic metadata.
+
+Even in such cases, there are often indirect clues about the data, including:
+
+
+Variable names, file names, and directory structure
+Syntactic metadata (dimensions, shapes, coordinate variables)
+Units and attributes (when present)
+Relationships among variables
+Small samples of the data itself (via remote subsetting)
+Statistical or structural properties of the data
+Similarities to other, better-understood datasets
+
+
+For example, the structure and behavior of a field may suggest what kind of geophysical quantity it represents, even if it is not explicitly labeled.
+
+
+## Prompt
+
+Given this setting, what are plausible ways that GenAI could be used to help interpret, characterize, or make sense of such a dataset?
+
+You can think broadly about what “characterize” might mean in this context.
+
+I am interested in ideas, approaches, or conceptual frameworks—these do not need to be fully specified systems.
+
+
+
+## Considerations
+
+
+Any approach should be consistent with the basic capabilities of OPeNDAP (remote access, subsetting, variable inspection)
+The available information may be incomplete, inconsistent, or partially misleading
+The goal is not necessarily to produce a single definitive answer, but to improve understanding of the dataset
+
+
+
+
+## Framing
+
+You might think of this as analogous to how an experienced scientist approaches an unfamiliar dataset: examining structure, sampling values, noticing patterns, and forming tentative interpretations.
+
 # OPeNDAP
 
 Information about OPeNDAP servers may be found here:
@@ -43,7 +103,7 @@ Adhere to following:
 
 If you run Python code, use the "ocean14" conda environment.
 
-To interact with an OPeNDAP server, you may wish to use the pydap package.  Its documentation is located here pydap.github.io/pydap/
+To interact with an OPeNDAP server, you may wish to use the pydap package.  Its documentation is located here https://pydap.github.io/pydap/en/intro.html
 
 # Overleaf
 
