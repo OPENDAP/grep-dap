@@ -442,3 +442,45 @@ Final thought:
 
 - This prompt sharpened an important distinction: the semantic metadata guesses are useful, but the more valuable outcome is the inferred product model.
 - For `grep-dap`, that product model is probably the thing an AI assistant should try to recover first: not just variable labels, but what kind of transformation pipeline created the dataset.
+
+## 2026-04-23 17:45:15 MDT
+
+Estimated the spatial range over which the orbit-level gradients were likely calculated, and added the estimate plus reasoning to `docs/uri_test_case.md`.
+
+Commands:
+
+```sh
+sed -n '1,280p' original_scripts/gradient_spatial_scale.py
+sed -n '1,260p' original_scripts/gradient_spatial_scale2.py
+/Users/jimg/opt/anaconda3/envs/opendap/bin/python original_scripts/gradient_spatial_scale2.py
+/Users/jimg/opt/anaconda3/envs/opendap/bin/python scripts/estimate_gradient_spatial_range.py
+```
+
+What happened:
+
+- The old script in `original_scripts/` failed because it uses an older `pydap` calling convention.
+- I created `scripts/estimate_gradient_spatial_range.py` and first tried the same approach with the current environment.
+- `pydap` again hit the server’s `503 Service Unavailable` path, so I rewrote the script to use direct DAP2 ASCII subset requests instead.
+- The first orbit patch had valid geolocation but no valid stored gradient values.
+- I expanded the script to test multiple small orbit patches and aggregate the usable comparisons.
+
+Measured values from the successful run:
+
+- along-track pixel spacing mean: about `1.036 km`
+- cross-track pixel spacing mean: about `1.005 km`
+- finite-difference to stored-gradient ratio:
+  - along-track comparisons: about `3.4` to `5.1`
+  - cross-track comparisons: about `1.6` to `2.9`
+
+Interpretation:
+
+- The stored gradient is clearly not a simple 1-pixel nearest-neighbor derivative.
+- Because the local pixel spacing is about `1 km`, the ratios imply an effective multi-pixel stencil.
+- The evidence is sparse, but it supports an effective gradient range on the order of a few kilometers.
+- I summarized this in the document as an estimated effective range of roughly `3-5 km`, with `about 4 km` as the best single-number estimate.
+
+Critical note:
+
+- This estimate is still approximate.
+- The finite-difference sample count was small because valid stored gradients were sparse in the sampled orbit windows.
+- I chose not to overstate the precision in the writeup.

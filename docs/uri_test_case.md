@@ -269,6 +269,31 @@ The dataset appears to store sufficient statistics, not monthly means directly. 
 
 This interpretation is strongly supported by the variable naming and by the numeric behavior of the sampled cells.
 
+### Estimated spatial range of the gradient calculation
+
+My best estimate is that the SST gradients were computed over an effective spatial range of roughly `3-5 km`, with `about 4 km` as the most defensible single-number estimate.
+
+Reasoning:
+
+- I sampled small orbit-level patches from the source `SST_Orbits` product and measured the pixel spacing directly from the latitude and longitude arrays.
+- In the usable patches, both along-track and cross-track nearest-neighbor spacing were about `1 km`:
+  - along-track mean spacing about `1.04 km`
+  - cross-track mean spacing about `1.01 km`
+- I then compared a simple 1-pixel finite-difference SST gradient, `|dSST| / distance`, with the stored orbit-level gradient magnitude.
+- In the limited set of valid comparisons I could recover, the 1-pixel finite-difference gradients were larger than the stored gradients by factors of about:
+  - `3.4` to `5.1` in the along-track comparisons
+  - `1.6` to `2.9` in the cross-track comparisons
+
+If the stored gradient were just a 1-pixel nearest-neighbor derivative, those ratios should have been near `1`. Instead, the stored gradients are systematically smaller, which strongly suggests that the gradient calculation uses an effective baseline or smoothing length of several pixels rather than a single 1 km pixel step.
+
+Because the local pixel spacing is about `1 km`, those ratios imply an effective derivative range of a few kilometers. The evidence is too sparse to justify a sharper claim than that, but the most reasonable summary is:
+
+- not a 1 km nearest-neighbor gradient
+- probably a multi-pixel gradient estimate
+- likely centered around `4 km`, with a plausible range of about `3-5 km`
+
+I would therefore describe the gradient variables as representing mesoscale SST gradients computed over a short multi-kilometer stencil, approximately `4 km` and perhaps as large as `5-6 km` in some parts of the swath.
+
 ## Guessed COARDS Metadata
 
 ### Global attributes
