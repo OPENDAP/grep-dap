@@ -1,0 +1,31 @@
+
+These are my notes, made to record my thoughts without having them enter into the AI system.
+
+The study phase took codex 34s and here's what I typed as prompts along with it's output and its 
+'thinking' running commentary:
+
+Me: Read [study_phase.md](prompts/study_phase.md)
+
+Codex: `prompts/study_phase.md` says to:
+
+1. Read `AGENTS.md` for project context.
+2. Study OPeNDAP and `pydap`.
+3. Write a command/thought log to [docs/study_phase_log.md](/Users/jimg/src/opendap/grep-dap/docs/study_phase_log.md).
+4. Write findings to [docs/opendap_readme.md](/Users/jimg/src/opendap/grep-dap/docs/opendap_readme.md).
+5. Focus the writeup on metadata, data retrieval, and subsetting, using OPeNDAP and `pydap` documentation.
+
+If you want, I can do the full study phase now and create both docs.
+
+Me: Do the full study
+
+Codex: The full study is done. I created [docs/study_phase_log.md](/Users/jimg/src/opendap/grep-dap/docs/study_phase_log.md) and [docs/opendap_readme.md](/Users/jimg/src/opendap/grep-dap/docs/opendap_readme.md).
+
+The writeup stays focused on metadata, remote retrieval, and subsetting, and ties those directly back to the `grep-dap` problem: using OPeNDAP as a structured probing interface and `pydap` as the Python layer for low-cost inspection and sampling. I also included source links to the NASA Earthdata, OPeNDAP, and `pydap` docs I used.
+
+I didn’t run code or tests for this task. If you want, I can take the next step and turn the study notes into a concrete design sketch for `grep-dap` itself.
+
+My comments: The study document is pretty good. However, it only knows about DAP2, which is an issue. And yet, later it says
+this about pydad, "...it can fetch binary data from DAP2 and DAP4 servers[.]" Still, it does not know how to make use of that
+information. It does not know that Groups are used for hierarchy, for example.
+
+My conclusion is that this part is sensitive to the sources used to learn about OPeNDAP.

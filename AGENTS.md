@@ -8,6 +8,7 @@ This file provides guidance to Codex when working with code in this repository.
 - Talk to me directly
 - Be concise and to the point
 - Be critical of my requests and your own work
+- Do not read the docs/study_phase_notes_jhrg.txt file
 
 ## Project Overview
 
@@ -101,14 +102,10 @@ Adhere to following:
 - Include inline comments
 - Use matplotlib for plotting
 
-If you run Python code, use the "ocean14" conda environment.
+If you run Python code, use the "opendap" conda environment.
 
 To interact with an OPeNDAP server, you may wish to use the pydap package.  Its documentation is located here https://pydap.github.io/pydap/en/intro.html
 
-# Overleaf
+# Markdown
 
-Place any Latex files in /home/xavier/Projects/overleaf/grepdap/
-
-You may push to git as you work.  The access token is in my .bashrc profile with the name OVERLEAF.
-
-
+Place any documents in 'docs' in this repo.
