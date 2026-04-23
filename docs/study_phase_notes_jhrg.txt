@@ -29,3 +29,10 @@ this about pydad, "...it can fetch binary data from DAP2 and DAP4 servers[.]" St
 information. It does not know that Groups are used for hierarchy, for example.
 
 My conclusion is that this part is sensitive to the sources used to learn about OPeNDAP.
+
+Now onto the URI test case.
+
+I'm using Codex with GTP 5.4 and the Medium setting.
+
+I had some glitches where files named *.tex might have caused a hiccup, but it seems that didn’t matter.
+
