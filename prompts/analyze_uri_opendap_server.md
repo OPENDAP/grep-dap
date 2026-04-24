@@ -28,3 +28,8 @@ If you will execute a series of Python commands, save them in a file named <scri
 2. . This is an excellent start.  Reread this document. Explore further the gradients_by_period dataset.   See if you can better infer the semantic metadata for this dataset, both global and for each variable.  Generate guesses that are COARDS compliant and provide your explanations for each.  Update the log file and the uri_test_case.tex file accordingly.
 3. Thanks.  Can you configure the COARDS per-variable attributes in the 'Variable-by-variable guesses' of uri_test_case.md to follow what was done for the coordinates?
 4. Given the semantic metatadat that you have generated for the gradients_by_period dataset, can you provide a description of the data and how it was generated?  Add to the uri_test_case.md file accordingly.  If you need to do any additional analysis, please do so and add to the log file and the uri_test_case.md file accordingly.
+5. Please estimate the spatial range over which the gradients were calculated.  Add your estimate and reasoning to the document.
+
+I wanted to ask: NASA's primary search engine for datasets is EarthData Search.  Please generate an entry for EarthData Search that describes the gradients_by_period dataset.  Generate a new file for this that conforms to the EarthData Search format
+
+But: You've hit your usage limit. To get more access now, send a request to your admin or try again at 7:47 PM.
