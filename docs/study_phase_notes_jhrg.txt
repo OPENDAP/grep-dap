@@ -25,7 +25,7 @@ The writeup stays focused on metadata, remote retrieval, and subsetting, and tie
 I didn’t run code or tests for this task. If you want, I can take the next step and turn the study notes into a concrete design sketch for `grep-dap` itself.
 
 My comments: The study document is pretty good. However, it only knows about DAP2, which is an issue. And yet, later it says
-this about pydad, "...it can fetch binary data from DAP2 and DAP4 servers[.]" Still, it does not know how to make use of that
+this about pydap, "...it can fetch binary data from DAP2 and DAP4 servers[.]" Still, it does not know how to make use of that
 information. It does not know that Groups are used for hierarchy, for example.
 
 My conclusion is that this part is sensitive to the sources used to learn about OPeNDAP.

@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+\usepackage{authblk}                % jhrg 5/27/26
+\usepackage[margin=1in]{geometry}   % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}              % ... or a4paper or a5paper or ... 
+\usepackage{kantlipsum} % for mock text
+\DeclareRobustCommand{\subtitle}[1]{\\#1}
+\usepackage{graphicx}
+\usepackage{amssymb} 
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{
+    colorlinks = true,
+    citecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}    
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\usepackage{bbding}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\newcommand\redout{\bgroup\markoverwith
+{\textcolor{red}{\rule[.5ex]{2pt}{0.4pt}}}\ULon}
+\usepackage{xcolor}
+% \usepackage[printonlyused]{acronym} 
+\usepackage[nolist]{acronym}        % They are defined in the text. jhrg 5/28/26
+\input{Abbreviations}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{mygreen}{RGB}{0, 153, 0}
+\usepackage{authblk}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\usepackage[numbers]{natbib}
+
+\usepackage{listings}
+
+\title{AI-driven Metadata Curator and Agentic AI Enabler via OPeNDAP to Meet Challenges in the Earth Science Data System}
+
+\author[1]{James Gallagher}
+\author[2]{Edward Armstrong}
+
+\affil[1]{OPeNDAP, Butte, MT}
+\affil[2]{NASA JPL PODAAC, Pasadena, CA}
+\date{\today}
+
+\begin{document}
+
+% \bibliographystyle{agu04}
+\bibliographystyle{plain}
+
+% Set up for the listing environment. jhrg 5/29/26
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=5pt,frame=single}
+
+\begin{flushleft}
+\noindent \textbf{Innovation Call Title}: {\em AI-driven Metadata Curator and Agentic AI Enabler via OPeNDAP to Meet Challenges in the Earth Science Data System}\\
+\textbf{Submitting Team / Organization}: {\em OPeNDAP}\\
+\textbf{Team Lead Name and Contact}: {\em James Gallagher, jgallagher@opendap.org, 401.575.3296}\\
+\textbf{ESDS Pillar(s) Addressed}: {\em Infrastructure, Access, and Analysis}\\
+\end{flushleft}
+
+% \maketitle
+
+\section{Overview and Background}
+\textcolor{red}{\textit{Describe the problem you are solving. What is the current state? Why does it matter for Earth science data systems? What has already been tried or considered? (Suggested: 1 pages)}}
+
+\ac{NASA} \ac{ESDS} is entering a transformative era of cloud-native scientific data management as \ac{EDC} archives continue to grow toward exabyte-scale holdings. As large volumes of Earth science data migrate into distributed cloud environments, operational challenges increasingly emerge from maintaining consistency, discoverability, and scalable access across rapidly expanding collections. In particular, metadata records may diverge from the underlying scientific data products they describe, resulting in incomplete dataset characterization, stale cloud-optimization artifacts such as \ac{DMR++} inventories, inconsistent attribute metadata, and degraded interoperability across archive services. At the same time, data users are increasingly adopting large-scale cloud-native analysis workflows that require efficient subsetting, scalable remote access, and machine-actionable metadata capable of supporting autonomous and \ac{AI}-assisted scientific workflows. These trends collectively create a growing need for intelligent infrastructure capable of improving metadata quality, enhancing discoverability, and enabling scalable access patterns across \ac{NASA} Earthdata archives.
+
+These operational challenges represent not only a scaling concern for \ac{ESDS} infrastructure, but also an opportunity to modernize \ac{EDC} services for the next generation of \ac{AI}-assisted scientific workflows. \ac{AI} is well positioned to enhance existing \ac{ESDS} systems by accelerating improvements to metadata validation, enabling intelligent discovery, and supporting scalable access workflows across large distributed archives. \ac{OPeNDAP} and the data-proximate and subset-driven protocol, provide a uniquely capable foundation for these enhancements because it enables efficient remote interrogation of scientific data products without requiring full data movement. This project proposes a set of \ac{AI}-native enhancements to Hyrax and the \ac{EDC} that improve metadata curation, enable intelligent and scalable data access workflows, and preserve compatibility with existing operational \ac{EDC} systems and cloud-hosted archives.
+
+The proposed work advances the \ac{ESDS} \ac{AI} Strategy primarily within the Infrastructure and Access pillars, while also contributing to Governance and Standards through \ac{AI}-assisted metadata quality enhancement and machine-actionable interoperability. Rather than developing a standalone \ac{AI} platform, this effort modernizes existing operational Earthdata infrastructure to support emerging autonomous and \ac{AI}-mediated scientific workflows. Specifically, the project will extend Hyrax and the \ac{EDC} with three complementary capabilities: (1) \ac{AI}-discoverable and crawlable service interfaces that support autonomous dataset discovery and workflow planning, (2) \ac{AI}-assisted metadata introspection and validation capabilities that improve metadata quality directly from underlying scientific data products, and (3) embedded machine-actionable guidance that enables intelligent and efficient autonomous data retrieval workflows.
+
+\section{Proposed Approach}
+\textcolor{red}{\textit{Describe your AI-powered solution. What will you build or enhance? What AI tools, models, or frameworks will you use and why? How does this connect to an existing project or operational system? (Suggested: 1–1.5 pages)}}
+
+\ref{section-2.1} (crawlable interfaces) is what lets \ac{AI} tools *discover and query* the data at all.
+\ref{section-2.2} *produces* the per-collection knowledge (the markdown files with usage metadata, optimal chunk-retrieval strategies, dataset-specific quirks).
+\ref{section-2.3} is about *where that knowledge lives and how an agent gets it at the moment it acts*. The point is to embed the guidance directly into the \ac{DAP4} responses the agent is already pulling, so the agent does not have to go find the recipe separately — the operational instructions travel with the data. The payoff is stated at the end of the section: "reducing retrieval inefficiencies and failed access patterns."
+
+\subsection{AI-discoverable and crawlable service interfaces}
+\label{section-2.1}
+
+In the first part of this project, we propose to use a simple Virtual Directory system that will enable \ac{OPeNDAP} Hyrax in \ac{ESDIS} to be crawled by commonly used \ac{AI} tools. This project will use a virtual directory subsystem for its own work in part two of this project and end users will use it for part three of the project. Because this will be used by end users, this component must be accessible by their tools. 
+
+We have demonstrated (CITE?) that Hyrax is easily crawled by generic \ac{AI} tools (e.g., OpenAI Codex and Claude Code) when simple directory pages are available. We have also demonstrated that \ac{AI} tools can learn significant details about the underlying data with only that interface and context describing the \ac{OPeNDAP} protocol. Generic \ac{AI} tools are able to discover important information by simply crawling the server and reading extracting data from the files themselves using \ac{OPeNDAP}. This is important because these \ac{AI} tools did this without special interfaces like \acp{MCP} or functions (e.g., using LangChain) and thus, more closely mirror what end users will likely have at their disposal.
+
+We have two Virtual Directory systems that the project can use: one developed by \ac{OPeNDAP} that follows exactly the interface used by other \ac{OPeNDAP} servers and one developed by the \ac{CMR} team~\cite{cmrvdi}. We will use the one that is the most expedient, based on the project's needs and \ac{ESDIS} guidance. The main advantages of the interface developed by \ac{OPeNDAP} is that we know it will work seamlessly with common \ac{AI} tools and using it will ease re-use of this work by other groups running \ac{OPeNDAP} servers.
+
+% Ref NOAA Use of CMR - they could use this UI, too: https://www.earthdata.nasa.gov/news/nasa-noaa-collaborate-greater-science-data-discovery
+
+%part 2
+\subsection{AI-assisted metadata introspection and validation}
+\label{section-2.2}
+In part two of the project, we propose to deploy an Agentic \ac{AI} to crawl and identify all collections that are enabled by \ac{OPeNDAP} in \ac{ESDIS}. The output of this component will be one Markdown file per-collection produced by the agentic \ac{AI} (see Figure~\ref{fig1:placeholder}). Each of these files will contain usage metadata common to all granules in the collection, based on both \ac{CMR} metadata and data and metadata extracted from direct access to the granules made using the \ac{OPeNDAP} service. Each metadata file will be stored in a separate bucket from the collection to mitigate issues with \ac{DAAC} data bucket ownership.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.75\linewidth]{Figure3.png}
+    \caption{How agentic \ac{AI} builds usage.md documents for \ac{NASA} \ac{ESDIS} collections.}
+    \label{fig1:placeholder}
+\end{figure}
+
+As soon as these metadata documents are written, they can be analyzed to see if they disagree with any of the information in \ac{CMR}. In this way, part two of the project accomplishes two goals. It provides a way to perform curation on legacy collections that have already undergone ingest, and it, for any discrepancies found, can bring in a data expert to determine how to address the differences. Thus, our project combines curation and management of the risk that the agentic \ac{AI} tool `hallucinates' and the result in unwittingly used.
+
+Because we have access to information in the \ac{DMR++} through the \ac{OPeNDAP} interface, the metadata documents this \ac{AI} tool builds can also include information about optimal retrieval strategies based on the sizes and locations of `chunks' within the granule. We can also use the \ac{AI} tool to investigate chunk sizing and compression consistency of the granules in a collection. The tool can check for problems that may be specific to a given data set and offer ways to compensate for those problems. This metadata is accessible for such a wide range of collections nowhere else in the \ac{ESDIS} system. This could be used by virtual data systems like {\em VirtualiZarr} to improve their operation.
+
+When inconsistency or missing information is identified in the generated metadata documents, the expert can use \ac{AI}-driven workflows with tools such as \ac{PyDAP} and Xarray to intelligently sample datasets and validate metadata characteristics {\em directly from the underlying scientific data} using \ac{OPeNDAP}. With its data-proximate subsetting, \ac{OPeNDAP} is an ideal tool to probe the contents of the data and identify relationships between the data and metadata such as units, scale factors, fill values, coordinates, dimensions, and value ranges.
+
+\subsection{Machine-actionable guidance for autonomous data retrieval workflows}
+\label{section-2.3}
+
+% The final component of the project will exploit the markdown files described in the previous part. Since each per-collection markdown file will describe sets of skills and executable instructions that Agentic AIs will rely on as workflow guidance, retrieval recipes, and machine-readable operational context, we propose to embed such markdown files into Hyrax \ac{DAP4} responses in ESDIS. These enhancements will enable autonomous agents, which we expect users will increasingly become more reliant upon, to effectively utilize NASA Earthdata resources while reducing retrieval inefficiencies and failed access patterns.
+
+While Parts 1 and 2 make collections discoverable and queryable by \ac{AI} tools, the value of the curated guidance is only fully realized if agents receive it at the point of retrieval. Part 3 therefore embeds the collected metadata in the data and metadata responses of the \ac{OPeNDAP} service. The {\em usage.md} file becomes a payload for the \ac{DAP4} responses. These verified, evidence-tagged facts are written to a per-collection `usage.md` and embedded in the collection's \ac{DAP4} responses. A downstream autonomous agent then consumes it in-band, at the moment of retrieval, and issues a correct, chunk-aligned subsetting request on the first attempt—without a separate discovery round-trip and without guessing at units, coordinate orientation, or fill conventions. This is the difference Part 3 delivers: the curated guidance from Part 2 travels with the data, turning queries that agents already make into queries that succeed.
+
+We have already exercised this workflow end-to-end against a live Hyrax server running at the \ac{URI} (proof-of-concept). The example in Listing~\ref{listing-1} recasts that for the \ac{EDC}, where collections already carry detailed \ac{CMR} and \ac{CF} metadata and the agent's job is primarily verification and cross-granule accumulation.
+
+\begin{lstlisting}[caption={Proof-of-concept example run against Hyrax at the University of Rhode Island and recast for the NASA EDC}, label={listing-1}]
+> **Worked example: from per-granule verification to a retrieval recipe**
+>
+> - **Value-range vs. declared units.** A small DAP4 hyperslab request confirms that a variable declared `units="kelvin"` actually spans ~270–310, not ~−3–35. In the proof-of-concept this same check caught two genuinely mislabeled variables (a wind speed declared `"mm"`, a pixel count declared `"C"`).
+> - **Cross-granule accumulation.** Per-granule spatial/temporal bounds, fill-value usage, and valid ranges are aggregated into a single collection-level envelope, and divergence between granules is flagged.
+> - **Cross-checks against CMR.** Accumulated bounds are compared with the collection's CMR record; disagreements are surfaced for an expert rather than silently overwritten.
+> - **Retrieval-relevant structure.** DMR++ chunk sizes and layout are read directly, yielding concrete subsetting guidance (chunk-aligned request shapes, byte ranges, and dataset-specific pitfalls).
+\end{lstlisting}
+
+\textbf{What the agent does, per collection} Walking the granules of a collection through \ac{OPeNDAP}, the agent (1) confirms that the stated semantic metadata is internally consistent across granules and consistent with the data itself, and (2) accumulates collection-level facts that no single granule record exposes. Each finding is anchored in evidence and graded by confidence, and the agent explicitly refuses to assert anything it cannot defend.
+
+
+
+%% This seems like a good conclusion, so I'm keeping it here for later use. jhrg 5/27/26 
+% The proposed system will enable autonomous metadata characterization in which AI-driven clients use \ac{DAP4} subsetting operations to derive, validate, and reconcile metadata directly from underlying Earth science datasets, supporting archive stewardship and metadata quality assessment workflows across NASA \ac{DAAC} systems. A critical output is the set of usage markdown files per collection that will direct an Agentic AI to sample and explore data efficiently using the most up-to-date and scalable API access patterns currently used by expert data users. These markdown files will be stored in an S3 bucket, initially owned by \ac{OPeNDAP} with write access, with the objective of making the files available upon request. 
+
+%% This also seems like a good conclusion, too... ;-) jhrg 5/27/26
+% The resulting prototype will demonstrate how existing operational Earthdata infrastructure can evolve toward AI-native interoperability without requiring disruptive architectural changes or replacement of existing systems. Deliverables will include prototype Hyrax extensions, AI-readable service descriptions, metadata introspection utilities, open-source software artifacts, and validation experiments using representative NASA Earthdata collections in collaboration with participating DAAC partners. Validation activities will evaluate improvements in autonomous dataset discovery, metadata completeness assessment, retrieval correctness, and AI-driven subsetting efficiency. By enhancing Hyrax for autonomous scientific workflows, this project positions NASA Earthdata infrastructure to support the next generation of AI-mediated Earth science research and data-intensive analysis systems.
+
+\section{Limitations and Challenges}
+\textcolor{red}{\textit{Be honest about what could go wrong, what is uncertain, and what dependencies exist. How will you manage or mitigate these? (Suggested: 0.5 pages)}}
+
+Each of the three parts of this project have risks. The deployment of our existing Virtual Directory Interface has been hampered by a different interface with overlapping functionality developed by the \ac{CMR} team. If \ac{ESDIS} does not approve the deployment of our interface, we will need to reassess if the Hyrax service in the \ac{EDC} can be crawled by generic \ac{AI} tools. Secondly, We propose to develop an agentic \ac{AI} tool to build the metadata documents in part two. This will be a significant undertaking using technology that is very new and rapidly changing. Our group will need to adapt traditional software engineering to a new kind of system, particularly for this second phase because we foresee developing tools/functions using LangChain and/or LangGraph. We will need to develop automated tests and \ac{CICD} for the products of those development efforts. Lastly, in the final part of the project, documents representing the contents of \ac{NASA} data sets will be accessible to end-users. The workflow for this part of the project includes a review of the documents by an expert, but the potential for misrepresenting data still exists.
+
+We understand that this project will have greater risk, and different kinds of risk, than the software development done for our \ac{NASA} subcontract. To address those `unknown unknowns,' we will take advantage of the cohort of teams also funded by this call to seek advice and share solutions to problems. 
+
+\section{Deliverables}
+\textcolor{red}{\textit{List the specific outputs you will produce: working prototype, integration, documentation, code repository. Be concrete. What will exist at the end of the project that does not exist today? (Suggested: 0.5 pages)}}
+
+We will produce three deliverables:
+\begin{enumerate}
+    \item A Virtual Directory Interface that enables crawling \ac{OPeNDAP}-enabled data sets in \ac{ESDIS} using generic \ac{AI} tools. This will follow the existing interface provided by Hyrax and other \ac{OPeNDAP} servers. This will use an existing prototype that has already run in the \ac{EDC} system. This will be integrated into the Hyrax software deployed in \ac{ESDIS}. This web-friendly user interface is already well documented. The software is already in an open GitHub repository managed by \ac{OPeNDAP} (as is all the Hyrax software).
+
+    \item An agentic \ac{AI} tool that can crawl \ac{OPeNDAP}-enabled data in \ac{ESDIS} and build comprehensive metadata documents written in markdown format. Using markdown streamlines use of the documents by generic \ac{AI} tools. This tool will be used internally to build and maintain these documents. The use of this software and its design will be documented. The software will be hosted on GitHub in a public repository maintained by \ac{OPeNDAP}.
+
+    \item A collection of comprehensive metadata documents that users can access using the \ac{OPeNDAP} service in \ac{ESDIS}. This will be open to the public. We will provide documentation for end-users that will guide them through common use cases. This documentation will be written in Markdown or AsciiDoc and provide just as we have provided documentation on Hyrax and \ac{DMR++} in the past. In addition, we will provide tutorials with code for end-users, similar to the other tutorials we have written for \ac{NASA} data
+\end{enumerate}
+
+\section{Validations and Path to Operations}
+\textcolor{red}{\textit{How will you know it works? Who will test or validate the output? What would need to happen for this to move from prototype to operational use? (Suggested: 0.5 pages)}}
+
+\section{Timeline}
+\textcolor{red}{\textit{Provide a month-by-month, milestone-based schedule for the project duration. Include key decision points and the final deliverable date.}}
+
+\subsection*{Part 1: AI-discoverable and crawlable service interfaces} 
+\begin{description}
+    \item [Month 1] Deploy and test the Hyrax Virtual Directory Interface.
+    \item [Month 2] Test this and verify that it surfaces all \ac{OPeNDAP}-enabled \ac{ESDIS} collections. 
+\end{description}
+
+\subsection*{Part 2: AI-assisted metadata introspection and validation} 
+\begin{description}
+    \item [Month 3] 
+    \item [Month 4] 
+    \item [Month 5] 
+    \item [Month 6]
+    \end{description}
+
+\subsection*{Part 3: Machine-actionable guidance for autonomous data retrieval workflows} 
+\begin{description}
+    \item [Month 7] 
+    \item [Month 8] 
+    \item [Month 9] 
+    \item [Month 9] Present working prototype. 
+\end{description}
+
+\section{Team}
+\textcolor{red}{\textit{List the people who will do the work, their roles, and the estimated effort in person-months. Include any key collaborators or external dependencies.}}
+
+\begin{flushleft}
+\noindent James Gallagher; Project lead, agentic \ac{AI} development, software engineering; 4 months\\
+Hannah Robertson; agentic \ac{AI} development, software engineering; 6 months\\
+Ed Armstrong; Domain expert and testing, a key collaborator at \ac{PO.DAAC} where \ac{OPeNDAP} has long had a presence; 1 month\\
+\end{flushleft}
+
+\section{Budget Summary}
+\textcolor{red}{\textit{Provide a high-level budget breakdown: personnel, compute, other direct costs. One page or less.}}
+
+\bibliography{references}
+\input{acronyms.tex}
+
+\end{document}
